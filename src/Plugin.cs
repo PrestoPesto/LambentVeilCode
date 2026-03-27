@@ -7,9 +7,9 @@ using System.Security.Permissions;
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 #pragma warning restore CS0618
 
-namespace TestMod;
+namespace LambentVeilCode;
 
-[BepInPlugin("com.author.testmod", "Test Mod", "0.1.0")]
+[BepInPlugin("presto.lambentveil", "Lambent Veil", "0.1.0")]
 sealed class Plugin : BaseUnityPlugin
 {
     public new static ManualLogSource Logger;
@@ -19,6 +19,7 @@ sealed class Plugin : BaseUnityPlugin
     {
         Logger = base.Logger;
         On.RainWorld.OnModsInit += OnModsInit;
+        MusicPearl.RegisterValues();
     }
 
     private void OnModsInit(On.RainWorld.orig_OnModsInit orig, RainWorld self)
@@ -27,8 +28,5 @@ sealed class Plugin : BaseUnityPlugin
 
         if (IsInit) return;
         IsInit = true;
-
-        // Initialize assets, your mod config, and anything that uses RainWorld here
-        Logger.LogDebug("Hello world!");
     }
 }
